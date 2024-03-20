@@ -4,6 +4,7 @@ import com.example.airlineproject.dtos.request.UserRegisterRequest;
 import com.example.airlineproject.exceptions.UserException;
 import com.example.airlineproject.services.UserService;
 import com.example.airlineproject.utils.ApiResponse;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,9 +23,10 @@ public class UserController {
 
     private final UserService userService;
 
-    @PostMapping
-    public ResponseEntity<ApiResponse> registerUser(@RequestBody UserRegisterRequest registerRequest) throws UserException {
-        return ResponseEntity.status(HttpStatus.CREATED)
-                             .body(userService.register(registerRequest));
+    @PostMapping("registerUser")
+    public ResponseEntity<ApiResponse> registerUser(@RequestBody @Valid UserRegisterRequest registerRequest) throws UserException {
+        return new ResponseEntity<>(userService.register(registerRequest), HttpStatus.CREATED);
+//        return ResponseEntity.status(HttpStatus.CREATED)
+//                             .body(userService.register(registerRequest));
     }
 }
