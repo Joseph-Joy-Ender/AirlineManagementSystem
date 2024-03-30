@@ -3,6 +3,9 @@ package com.example.airlineproject.dtos.request;
 import com.example.airlineproject.data.models.Airline;
 import com.example.airlineproject.data.models.Airport;
 import com.example.airlineproject.data.models.FlightType;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,7 +19,9 @@ public class AddFlightRequest {
     private String flightNumber;
     private Airport departureAirport;
     private Airport arrivalAirport;
+    @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate departureDate;
+    @JsonSerialize(using = LocalTimeSerializer.class)
     private LocalTime departureTime;
     private Airline airline;
     private FlightType flightType;

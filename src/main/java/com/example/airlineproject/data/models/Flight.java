@@ -2,16 +2,21 @@ package com.example.airlineproject.data.models;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import static jakarta.persistence.GenerationType.IDENTITY;
+
 @Entity
-@Data
+@Getter
+@Setter
 public class Flight {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
     @Column(unique = true)

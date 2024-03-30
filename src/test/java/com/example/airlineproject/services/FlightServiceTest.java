@@ -1,7 +1,5 @@
 package com.example.airlineproject.services;
 
-import com.example.airlineproject.data.models.Airline;
-import com.example.airlineproject.data.models.Flight;
 import com.example.airlineproject.data.models.FlightType;
 import com.example.airlineproject.dtos.request.AddFlightRequest;
 import com.example.airlineproject.dtos.response.AddFlightResponse;
@@ -45,9 +43,6 @@ public class FlightServiceTest {
         AddFlightResponse flightResponse = flightService.addFlight(flightRequest);
         assertThat(flightResponse).isNotNull();
         assertThat("ABC123EJ").isEqualTo(flightRequest.getFlightNumber());
-
-        //TODO
-        // make sure the same type of flight can't be added twice
     }
 
     @Test
@@ -89,6 +84,6 @@ public class FlightServiceTest {
     public void testThatAllFlightsCanBeViewed(){
         List<FlightResponse> allFlights = flightService.viewAllFlights(1, 5);
         log.info("all flights -> {}", allFlights);
-        assertThat(allFlights).hasSize(3);
+        assertThat(allFlights).hasSize(4);
     }
 }

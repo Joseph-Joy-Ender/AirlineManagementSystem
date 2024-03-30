@@ -1,6 +1,5 @@
 package com.example.airlineproject.services;
 
-import com.example.airlineproject.data.models.Flight;
 import com.example.airlineproject.dtos.request.AddFlightRequest;
 import com.example.airlineproject.dtos.response.AddFlightResponse;
 import com.example.airlineproject.dtos.response.FlightResponse;

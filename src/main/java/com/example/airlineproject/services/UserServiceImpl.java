@@ -8,7 +8,6 @@ import com.example.airlineproject.utils.ApiResponse;
 import com.example.airlineproject.utils.GenerateApiResponse;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,14 +17,14 @@ public class UserServiceImpl implements UserService{
     private final UserRepository userRepository;
     private static final ModelMapper mapper = new ModelMapper();
 
-    private final PasswordEncoder passwordEncoder;
+//    private final PasswordEncoder passwordEncoder;
     @Override
     public ApiResponse register(UserRegisterRequest registerRequest) throws UserException {
         if (userRepository.existsByEmailAddress(registerRequest.getEmailAddress())) {
             throw new UserException(GenerateApiResponse.CUSTOMER_ALREADY_EXIST);
         }
         Passenger passenger = mapper.map(registerRequest, Passenger.class);
-        passenger.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
+//        passenger.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
         userRepository.save(passenger);
         return GenerateApiResponse.create(GenerateApiResponse.REGISTER_SUCCESSFULLY);
 

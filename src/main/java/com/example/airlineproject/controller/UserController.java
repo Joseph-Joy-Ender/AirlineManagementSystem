@@ -25,7 +25,5 @@ public class UserController {
     @PostMapping
     public ResponseEntity<ApiResponse> registerUser(@RequestBody @Valid UserRegisterRequest registerRequest) throws UserException {
         return new ResponseEntity<>(userService.register(registerRequest), HttpStatus.CREATED);
-//        return ResponseEntity.status(HttpStatus.CREATED)
-//                             .body(userService.register(registerRequest));
     }
 }
