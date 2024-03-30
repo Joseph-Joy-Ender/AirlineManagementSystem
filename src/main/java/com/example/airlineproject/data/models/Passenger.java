@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
-public class User {
+public class Passenger {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long userId;

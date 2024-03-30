@@ -1,5 +1,6 @@
 package com.example.airlineproject.services;
 
+import com.example.airlineproject.dtos.request.SearchFlightRequest;
 import com.example.airlineproject.dtos.request.UserRegisterRequest;
 import com.example.airlineproject.exceptions.UserException;
 import com.example.airlineproject.utils.ApiResponse;
@@ -11,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
-public class UserServiceTest {
+public class PassengerServiceTest {
 
     @Autowired
     private UserService userService;
@@ -55,5 +56,10 @@ public class UserServiceTest {
                 userService.register(registerRequest);
 
         assertNotNull(apiResponse);
+    }
+
+    @Test
+    public void testThatUserCanSearchForFlights(){
+        SearchFlightRequest flightRequest = new SearchFlightRequest();
     }
 }

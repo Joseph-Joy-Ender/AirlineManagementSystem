@@ -9,13 +9,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class UserControllerTest {
+
+public class PassengerControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -25,15 +27,16 @@ public class UserControllerTest {
     public void testRegisterUser() throws Exception{
         UserRegisterRequest registerRequest = new UserRegisterRequest();
         registerRequest.setFirstName("Joy");
-        registerRequest.setEmailAddress("ben123@gmail.com");
         registerRequest.setPassword("123456");
+        registerRequest.setEmailAddress("ben123@gmail.com");
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/customer")
-                .contentType(MediaType.APPLICATION_JSON)
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/user")
+//                .contentType("application/json")
                 .content(mapper.writeValueAsBytes(registerRequest)))
                 .andExpect(status().is2xxSuccessful())
                 .andDo(print());
 
-
     }
+
 }

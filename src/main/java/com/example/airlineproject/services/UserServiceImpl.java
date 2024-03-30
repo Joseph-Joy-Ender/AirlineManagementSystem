@@ -1,6 +1,6 @@
 package com.example.airlineproject.services;
 
-import com.example.airlineproject.data.models.User;
+import com.example.airlineproject.data.models.Passenger;
 import com.example.airlineproject.data.repositories.UserRepository;
 import com.example.airlineproject.dtos.request.UserRegisterRequest;
 import com.example.airlineproject.exceptions.UserException;
@@ -24,9 +24,9 @@ public class UserServiceImpl implements UserService{
         if (userRepository.existsByEmailAddress(registerRequest.getEmailAddress())) {
             throw new UserException(GenerateApiResponse.CUSTOMER_ALREADY_EXIST);
         }
-        User user = mapper.map(registerRequest, User.class);
-        user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
-        userRepository.save(user);
+        Passenger passenger = mapper.map(registerRequest, Passenger.class);
+        passenger.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
+        userRepository.save(passenger);
         return GenerateApiResponse.create(GenerateApiResponse.REGISTER_SUCCESSFULLY);
 
     }

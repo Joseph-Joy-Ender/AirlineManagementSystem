@@ -16,4 +16,11 @@ public class GlobalExceptionHandler {
                 .isSuccessful(false)
                 .build(), HttpStatus.BAD_REQUEST);
     }
+    @ExceptionHandler(DuplicateFlightException.class)
+    public ResponseEntity<ExceptionApiResponse> duplicateFlight(DuplicateFlightException flightException){
+        return new ResponseEntity<>(ExceptionApiResponse.builder()
+                .data(flightException.getMessage())
+                .isSuccessful(false)
+                .build(), HttpStatus.BAD_REQUEST);
+    }
 }
