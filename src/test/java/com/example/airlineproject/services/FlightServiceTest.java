@@ -1,7 +1,9 @@
 package com.example.airlineproject.services;
 
+import com.example.airlineproject.data.models.Flight;
 import com.example.airlineproject.data.models.FlightType;
 import com.example.airlineproject.dtos.request.AddFlightRequest;
+import com.example.airlineproject.dtos.request.SearchFlightRequest;
 import com.example.airlineproject.dtos.response.AddFlightResponse;
 import com.example.airlineproject.dtos.response.FlightResponse;
 import com.example.airlineproject.exceptions.DuplicateFlightException;
@@ -83,7 +85,18 @@ public class FlightServiceTest {
     @Test
     public void testThatAllFlightsCanBeViewed(){
         List<FlightResponse> allFlights = flightService.viewAllFlights(1, 5);
-        log.info("all flights -> {}", allFlights);
+        log.info("All flights -> {}", allFlights);
         assertThat(allFlights).hasSize(4);
     }
+
+    @Test
+    public void testThatFlightCanBeSearchedFor(){
+        SearchFlightRequest flightRequest = new SearchFlightRequest();
+        flightRequest.setDepartureAirport(ABV);
+        flightRequest.setArrivalAirport(IBA);
+        List<Flight> searchFlights = flightService.searchFlights(flightRequest);
+        log.info("Searched flight :: {}", searchFlights);
+        assertThat(searchFlights).hasSize(1);
+    }
+
 }
