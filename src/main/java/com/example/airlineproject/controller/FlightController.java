@@ -1,6 +1,9 @@
 package com.example.airlineproject.controller;
 
+import com.example.airlineproject.data.models.Flight;
 import com.example.airlineproject.dtos.request.AddFlightRequest;
+import com.example.airlineproject.dtos.request.SearchFlightByDestinationRequest;
+import com.example.airlineproject.dtos.request.SearchFlightByPriceRequest;
 import com.example.airlineproject.dtos.response.AddFlightResponse;
 import com.example.airlineproject.dtos.response.FlightResponse;
 import com.example.airlineproject.exceptions.DuplicateFlightException;
@@ -31,5 +34,14 @@ public class FlightController {
     public ResponseEntity<List<FlightResponse>> viewAllFlights(@PathVariable int page, @PathVariable int size){
         return ResponseEntity.status(HttpStatus.OK)
                 .body(flightService.viewAllFlights(page, size));
+    }
+
+    @GetMapping("/searchFlightByDestination")
+    public ResponseEntity<List<Flight>> searchFlightByDestination(@RequestBody SearchFlightByDestinationRequest destinationRequest){
+        return new ResponseEntity<>(flightService.searchFlightByDestination(destinationRequest), HttpStatus.OK);
+    }
+    @GetMapping("/searchFlightByPrice")
+    public ResponseEntity<List<Flight>> searchFlightByPrice(@RequestBody SearchFlightByPriceRequest priceRequest){
+        return new ResponseEntity<>(flightService.searchFlightsByPrice(priceRequest), HttpStatus.OK);
     }
 }

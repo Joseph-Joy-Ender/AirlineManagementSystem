@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class SearchFlightRequest {
+public class SearchFlightByDestinationRequest {
 
     private Airport departureAirport;
     private Airport arrivalAirport;

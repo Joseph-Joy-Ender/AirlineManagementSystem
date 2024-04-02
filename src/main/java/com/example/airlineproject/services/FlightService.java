@@ -3,7 +3,7 @@ package com.example.airlineproject.services;
 import com.example.airlineproject.data.models.Flight;
 import com.example.airlineproject.dtos.request.AddFlightRequest;
 import com.example.airlineproject.dtos.request.SearchFlightByPriceRequest;
-import com.example.airlineproject.dtos.request.SearchFlightRequest;
+import com.example.airlineproject.dtos.request.SearchFlightByDestinationRequest;
 import com.example.airlineproject.dtos.response.AddFlightResponse;
 import com.example.airlineproject.dtos.response.FlightResponse;
 import com.example.airlineproject.exceptions.DuplicateFlightException;
@@ -17,7 +17,7 @@ public interface FlightService {
 
     List<FlightResponse> viewAllFlights(int page, int size);
 
-    List<Flight> searchFlights(SearchFlightRequest flightRequest);
+    List<Flight> searchFlightByDestination(SearchFlightByDestinationRequest flightRequest);
 
     List<Flight> searchFlightsByPrice(SearchFlightByPriceRequest priceRequest);
 

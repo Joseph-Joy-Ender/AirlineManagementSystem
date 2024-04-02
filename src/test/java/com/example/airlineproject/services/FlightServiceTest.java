@@ -4,7 +4,7 @@ import com.example.airlineproject.data.models.Flight;
 import com.example.airlineproject.data.models.FlightType;
 import com.example.airlineproject.dtos.request.AddFlightRequest;
 import com.example.airlineproject.dtos.request.SearchFlightByPriceRequest;
-import com.example.airlineproject.dtos.request.SearchFlightRequest;
+import com.example.airlineproject.dtos.request.SearchFlightByDestinationRequest;
 import com.example.airlineproject.dtos.response.AddFlightResponse;
 import com.example.airlineproject.dtos.response.FlightResponse;
 import com.example.airlineproject.exceptions.DuplicateFlightException;
@@ -109,10 +109,10 @@ public class FlightServiceTest {
 
     @Test
     public void testThatFlightCanBeSearchedFor(){
-        SearchFlightRequest flightRequest = new SearchFlightRequest();
+        SearchFlightByDestinationRequest flightRequest = new SearchFlightByDestinationRequest();
         flightRequest.setDepartureAirport(ABV);
         flightRequest.setArrivalAirport(IBA);
-        List<Flight> searchFlights = flightService.searchFlights(flightRequest);
+        List<Flight> searchFlights = flightService.searchFlightByDestination(flightRequest);
         log.info("Searched flight :: {}", searchFlights);
         assertThat(searchFlights).hasSize(2);
     }
