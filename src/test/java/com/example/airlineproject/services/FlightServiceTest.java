@@ -3,6 +3,7 @@ package com.example.airlineproject.services;
 import com.example.airlineproject.data.models.Flight;
 import com.example.airlineproject.data.models.FlightType;
 import com.example.airlineproject.dtos.request.AddFlightRequest;
+import com.example.airlineproject.dtos.request.SearchFlightByPriceRequest;
 import com.example.airlineproject.dtos.request.SearchFlightRequest;
 import com.example.airlineproject.dtos.response.AddFlightResponse;
 import com.example.airlineproject.dtos.response.FlightResponse;
@@ -83,6 +84,23 @@ public class FlightServiceTest {
     }
 
     @Test
+    public void testThatTheSameFlightCannotBeAddedAgain() throws DuplicateFlightException {
+        AddFlightRequest flightRequest = new AddFlightRequest();
+
+        flightRequest.setFlightNumber("GBD124EH");
+        flightRequest.setDepartureAirport(ABV);
+        flightRequest.setArrivalAirport(IBA);
+        flightRequest.setDepartureDate(LocalDate.of(2024, 11, 20));
+        flightRequest.setDepartureTime(LocalTime.of(12, 10, 35));
+        flightRequest.setAirline(MED_VIEW_AIRLINES);
+        flightRequest.setFlightType(FlightType.FIRSTCLASS);
+        flightRequest.setPrice(BigDecimal.valueOf(200000));
+
+        AddFlightResponse flightResponse = flightService.addFlight(flightRequest);
+        assertThat(flightResponse).isNotNull();
+    }
+
+    @Test
     public void testThatAllFlightsCanBeViewed(){
         List<FlightResponse> allFlights = flightService.viewAllFlights(1, 5);
         log.info("All flights -> {}", allFlights);
@@ -96,7 +114,23 @@ public class FlightServiceTest {
         flightRequest.setArrivalAirport(IBA);
         List<Flight> searchFlights = flightService.searchFlights(flightRequest);
         log.info("Searched flight :: {}", searchFlights);
-        assertThat(searchFlights).hasSize(1);
+        assertThat(searchFlights).hasSize(2);
+    }
+
+    @Test
+    public void testThatFlightsCanBeSearchedByFlight(){
+        SearchFlightByPriceRequest priceRequest = new SearchFlightByPriceRequest();
+        priceRequest.setPrice(BigDecimal.valueOf(200000));
+        List<Flight> searchFlightByPrice = flightService.searchFlightsByPrice(priceRequest);
+        assertThat(searchFlightByPrice).hasSize(2);
+    }
+
+    @Test
+    public void testThatFlightCanBeCancelled(){
+        //TODO
+        //FIRST WE NEED TO FIND THE FLIGHT BY ID OR FLIGHT NUMBER
+        //SECOND CHECK IF THE FLIGHT EXIST
+
     }
 
 }

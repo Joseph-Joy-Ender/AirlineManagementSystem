@@ -4,6 +4,7 @@ import com.example.airlineproject.data.models.Airport;
 import com.example.airlineproject.data.models.Flight;
 import com.example.airlineproject.data.repositories.FlightRepository;
 import com.example.airlineproject.dtos.request.AddFlightRequest;
+import com.example.airlineproject.dtos.request.SearchFlightByPriceRequest;
 import com.example.airlineproject.dtos.request.SearchFlightRequest;
 import com.example.airlineproject.dtos.response.AddFlightResponse;
 import com.example.airlineproject.dtos.response.FlightResponse;
@@ -53,8 +54,15 @@ public class FlightServiceImpl implements FlightService{
     @Override
     public List<Flight> searchFlights(SearchFlightRequest flightRequest) {
 
-        return flightRepository.searchFlightByDepartureAirportAndArrivalAirport(flightRequest.getDepartureAirport(), flightRequest.getArrivalAirport());
+        return flightRepository.searchFlightByDepartureAirportAndArrivalAirport(flightRequest.getDepartureAirport(),
+                flightRequest.getArrivalAirport());
     }
+
+    @Override
+    public List<Flight> searchFlightsByPrice(SearchFlightByPriceRequest priceRequest) {
+        return flightRepository.searchFlightsByPrice(priceRequest.getPrice());
+    }
+
 
     private static PageRequest createPageRequest(int page, int size) {
             if (page < DEFAULT_PAGE_NUMBER) page = DEFAULT_PAGE_NUMBER;
