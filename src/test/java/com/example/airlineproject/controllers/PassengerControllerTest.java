@@ -30,7 +30,7 @@ public class PassengerControllerTest {
         registerRequest.setEmailAddress("ben123@gmail.com");
 
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/user")
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/user/register")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(mapper.writeValueAsBytes(registerRequest)))
                 .andExpect(status().is2xxSuccessful())

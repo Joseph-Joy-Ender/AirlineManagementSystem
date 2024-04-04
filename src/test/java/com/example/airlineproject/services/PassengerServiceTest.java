@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class PassengerServiceTest {
 
     @Autowired
-    private UserService userService;
+    private PassengerService passengerService;
 
 
     @Test
@@ -26,7 +26,7 @@ public class PassengerServiceTest {
        registerRequest.setFirstName("Joy");
 
        ApiResponse apiResponse =
-       userService.register(registerRequest);
+       passengerService.register(registerRequest);
 
        assertNotNull(apiResponse);
     }
@@ -39,9 +39,9 @@ public class PassengerServiceTest {
         registerRequest.setFirstName("Joy");
 
         ApiResponse apiResponse =
-                userService.register(registerRequest);
+                passengerService.register(registerRequest);
 
-        assertThatExceptionOfType(UserException.class).isThrownBy(()-> userService.register(registerRequest));
+        assertThatExceptionOfType(UserException.class).isThrownBy(()-> passengerService.register(registerRequest));
 
     }
 
@@ -53,7 +53,7 @@ public class PassengerServiceTest {
         registerRequest.setFirstName("joseph");
 
         ApiResponse apiResponse =
-                userService.register(registerRequest);
+                passengerService.register(registerRequest);
 
         assertNotNull(apiResponse);
     }

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class UserServiceImpl implements UserService{
+public class PassengerServiceImpl implements PassengerService {
 
     private final UserRepository userRepository;
     private static final ModelMapper mapper = new ModelMapper();
