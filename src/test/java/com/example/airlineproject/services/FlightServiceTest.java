@@ -1,5 +1,6 @@
 package com.example.airlineproject.services;
 
+import com.example.airlineproject.data.models.Airport;
 import com.example.airlineproject.data.models.Flight;
 import com.example.airlineproject.data.models.FlightType;
 import com.example.airlineproject.dtos.request.AddFlightRequest;
@@ -30,13 +31,20 @@ public class FlightServiceTest {
     @Autowired
     private FlightService flightService;
 
+    @Autowired
+    private AirportService airportService;
+
     @Test
     public void testThatFlightCanBeAdded() throws DuplicateFlightException {
         AddFlightRequest flightRequest = new AddFlightRequest();
 
+        Airport departureAirport = airportService.getAirportByCode("LOS");
+
+        Airport arrivalAirport = airportService.getAirportByCode("ABV");
+
         flightRequest.setFlightNumber("ABC123EJ");
-        flightRequest.setDepartureAirport(LOS);
-        flightRequest.setArrivalAirport(IBA);
+        flightRequest.setDepartureAirport(departureAirport);
+        flightRequest.setArrivalAirport(arrivalAirport);
         flightRequest.setDepartureDate(LocalDate.of(2023, 10, 6));
         flightRequest.setDepartureTime(LocalTime.of(12, 45, 40));
         flightRequest.setAirline(ArikAir);
@@ -52,9 +60,19 @@ public class FlightServiceTest {
     public void testThatMoreFlightsCanBeAdded() throws DuplicateFlightException {
         AddFlightRequest flightRequest = new AddFlightRequest();
 
+        Airport departureAirport = new Airport();
+        departureAirport.setCode("ABV");
+        departureAirport.setName("Nnamdi Azikiwe International Airport");
+        departureAirport.setLocation("Abuja, Federal Capital Territory");
+
+        Airport arrivalAirport = new Airport();
+        arrivalAirport.setCode("BNI");
+        departureAirport.setName("Benin Airport");
+        departureAirport.setLocation("Benin city");
+
         flightRequest.setFlightNumber("ABC123ED");
-        flightRequest.setDepartureAirport(ABV);
-        flightRequest.setArrivalAirport(BNI);
+        flightRequest.setDepartureAirport(departureAirport);
+        flightRequest.setArrivalAirport(arrivalAirport);
         flightRequest.setDepartureDate(LocalDate.of(2023, 7, 12));
         flightRequest.setDepartureTime(LocalTime.of(8, 30, 45));
         flightRequest.setAirline(AIRPEACE);
@@ -69,9 +87,19 @@ public class FlightServiceTest {
     public void testThatTheSameFlightCannotBeAddedTwice() throws DuplicateFlightException {
         AddFlightRequest flightRequest = new AddFlightRequest();
 
+        Airport departureAirport = new Airport();
+        departureAirport.setCode("PHC");
+        departureAirport.setName("Port Harcourt International Airport");
+        departureAirport.setLocation("Omagwa, Rivers State");
+
+        Airport arrivalAirport = new Airport();
+        arrivalAirport.setCode("IBA");
+        departureAirport.setName("Ibadan Airport");
+        departureAirport.setLocation("Ibadan, Oyo State");
+
         flightRequest.setFlightNumber("ABC123ER");
-        flightRequest.setDepartureAirport(PHC);
-        flightRequest.setArrivalAirport(IBA);
+        flightRequest.setDepartureAirport(departureAirport);
+        flightRequest.setArrivalAirport(arrivalAirport);
         flightRequest.setDepartureDate(LocalDate.of(2024, 1, 5));
         flightRequest.setDepartureTime(LocalTime.of(2, 40, 30));
         flightRequest.setAirline(DANA_AIR);
@@ -87,9 +115,19 @@ public class FlightServiceTest {
     public void testThatTheSameFlightCannotBeAddedAgain() throws DuplicateFlightException {
         AddFlightRequest flightRequest = new AddFlightRequest();
 
+        Airport departureAirport = new Airport();
+        departureAirport.setCode("ABV");
+        departureAirport.setName("Nnamdi Azikiwe International Airport");
+        departureAirport.setLocation("Abuja, Federal Capital Territory");
+
+        Airport arrivalAirport = new Airport();
+        arrivalAirport.setCode("IBA");
+        departureAirport.setName("Ibadan Airport");
+        departureAirport.setLocation("Ibadan, Oyo State");
+
         flightRequest.setFlightNumber("GBD124EH");
-        flightRequest.setDepartureAirport(ABV);
-        flightRequest.setArrivalAirport(IBA);
+        flightRequest.setDepartureAirport(departureAirport);
+        flightRequest.setArrivalAirport(arrivalAirport);
         flightRequest.setDepartureDate(LocalDate.of(2024, 11, 20));
         flightRequest.setDepartureTime(LocalTime.of(12, 10, 35));
         flightRequest.setAirline(MED_VIEW_AIRLINES);
@@ -110,8 +148,19 @@ public class FlightServiceTest {
     @Test
     public void testThatFlightCanBeSearchedFor(){
         SearchFlightByDestinationRequest flightRequest = new SearchFlightByDestinationRequest();
-        flightRequest.setDepartureAirport(ABV);
-        flightRequest.setArrivalAirport(IBA);
+
+        Airport departureAirport = new Airport();
+        departureAirport.setCode("ABV");
+        departureAirport.setName("Nnamdi Azikiwe International Airport");
+        departureAirport.setLocation("Abuja, Federal Capital Territory\n");
+
+        Airport arrivalAirport = new Airport();
+        arrivalAirport.setCode("IBA");
+        departureAirport.setName("Ibadan Airport");
+        departureAirport.setLocation("Ibadan, Oyo State");
+
+        flightRequest.setDepartureAirport(departureAirport);
+        flightRequest.setArrivalAirport(arrivalAirport);
         List<Flight> searchFlights = flightService.searchFlightByDestination(flightRequest);
         log.info("Searched flight :: {}", searchFlights);
         assertThat(searchFlights).hasSize(2);

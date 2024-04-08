@@ -1,24 +1,20 @@
 package com.example.airlineproject.data.models;
 
+import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
-public enum Airport {
-    LOS("LOS", "Murtala Muhammed International Airports", "Ikeja Lagos State"),
-    ABV("ABV", "Nnamdi Azikiwe Airports", "Abuja, Federal Capital Territory"),
-    IBA("IBA", "Ibadan Airports", "Ibadan, Oyo State"),
-    BNI("BNI", "Benin City Airports", "Benin City, Edo State"),
-    PHC("PHC", "Port Harcourt International Airport", "Port Harcourt, Rivers State");
-
-    private final String code;
-    private final String name;
-    private final String location;
-
-    Airport(String code, String name, String location) {
-        this.code = code;
-        this.name = name;
-        this.location = location;
-    }
+@Setter
+@Entity
+public class Airport {
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(unique = true)
+    private  String code;
+    private  String name;
+    private  String location;
 
 
 }

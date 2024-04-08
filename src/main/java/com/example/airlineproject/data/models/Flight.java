@@ -1,7 +1,6 @@
 package com.example.airlineproject.data.models;
 
 import jakarta.persistence.*;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,10 +21,10 @@ public class Flight {
     @Column(unique = true)
     private String flightNumber;
 
-    @Enumerated(EnumType.STRING)
+   @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE})
     private Airport departureAirport;
 
-    @Enumerated(EnumType.STRING)
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE})
     private Airport arrivalAirport;
 
     private LocalDate departureDate;

@@ -15,9 +15,8 @@ import java.time.LocalDateTime;
 public class Passenger {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long userId;
-    private String firstName;
-    private String lastName;
+    private long id;
+    private String fullName;
     private String password;
     private String phoneNumber;
     private String emailAddress;

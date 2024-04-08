@@ -2,6 +2,7 @@ package com.example.airlineproject.services;
 
 import com.example.airlineproject.data.models.Airport;
 import com.example.airlineproject.data.models.Flight;
+import com.example.airlineproject.data.repositories.AirportRepository;
 import com.example.airlineproject.data.repositories.FlightRepository;
 import com.example.airlineproject.dtos.request.AddFlightRequest;
 import com.example.airlineproject.dtos.request.SearchFlightByPriceRequest;
@@ -29,13 +30,21 @@ public class FlightServiceImpl implements FlightService{
 
     private final FlightRepository flightRepository;
 
+    private final AirportRepository airportRepository;
+
     private static final ModelMapper mapper = new ModelMapper();
+
     @Override
     public AddFlightResponse addFlight(AddFlightRequest flightRequest) throws DuplicateFlightException {
         if (flightRepository.existsByFlightNumber(flightRequest.getFlightNumber())){
             throw new DuplicateFlightException(GenerateApiResponse.FLIGHT_WITH_THE_SAME_FIGHT_NUMBER_ALREADY_EXISTS);
         }
-        Flight flight = mapper.map(flightRequest, Flight.class);
+//        Airport departureAirport = airportRepository.findAirportByCodeContainsIgnoreCase(flightRequest.getDepartureAirport().getCode());
+//        Airport arrivalAirport = airportRepository.findAirportByCodeContainsIgnoreCase(flightRequest.getArrivalAirport().getCode());
+          Flight flight = mapper.map(flightRequest, Flight.class);
+//        flight.setDepartureAirport(departureAirport);
+//        flight.setArrivalAirport(arrivalAirport);
+
         flightRepository.save(flight);
         AddFlightResponse flightResponse = new AddFlightResponse();
         flightResponse.setMessage("Flight added successfully");
