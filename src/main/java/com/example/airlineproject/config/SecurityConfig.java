@@ -1,12 +1,20 @@
 package com.example.airlineproject.config;
 
-import org.springframework.context.annotation.Configuration;
+//@Configuration
+//@EnableWebSecurity
+//public class SecurityConfig {
+//
+//    @Bean
+//    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//        http.authorizeHttpRequests((requests) -> requests.anyRequest().authenticated());
+////        http.formLogin(withDefaults());
+//        http.httpBasic(withDefaults());
+//        return http.build();
+//    }
 
-@Configuration
-public class SecurityConfig {
 
 //    @Bean
 //    public PasswordEncoder passwordEncoder(){
 //        return new BCryptPasswordEncoder();
 //    }
-}
+//}

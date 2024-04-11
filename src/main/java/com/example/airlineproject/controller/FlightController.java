@@ -36,10 +36,10 @@ public class FlightController {
                 .body(flightService.viewAllFlights(page, size));
     }
 
-    @GetMapping("/searchFlightByDestination")
-    public ResponseEntity<List<Flight>> searchFlightByDestination(@RequestBody SearchFlightByDestinationRequest destinationRequest){
-        return new ResponseEntity<>(flightService.searchFlightByDestination(destinationRequest), HttpStatus.OK);
-    }
+//    @GetMapping("/searchFlightByDestination")
+//    public ResponseEntity<List<Flight>> searchFlightByDestination(@RequestBody SearchFlightByDestinationRequest destinationRequest){
+//        return new ResponseEntity<>(flightService.searchFlightByDestination(destinationRequest), HttpStatus.OK);
+//    }
     @GetMapping("/searchFlightByPrice")
     public ResponseEntity<List<Flight>> searchFlightByPrice(@RequestBody SearchFlightByPriceRequest priceRequest){
         return new ResponseEntity<>(flightService.searchFlightsByPrice(priceRequest), HttpStatus.OK);

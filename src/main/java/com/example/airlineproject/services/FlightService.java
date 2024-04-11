@@ -17,7 +17,7 @@ public interface FlightService {
 
     List<FlightResponse> viewAllFlights(int page, int size);
 
-    List<Flight> searchFlightByDestination(SearchFlightByDestinationRequest flightRequest);
+//    List<Flight> searchFlightByDestination(SearchFlightByDestinationRequest flightRequest);
 
     List<Flight> searchFlightsByPrice(SearchFlightByPriceRequest priceRequest);
 

@@ -17,8 +17,8 @@ import java.time.LocalTime;
 @Getter
 public class AddFlightRequest {
     private String flightNumber;
-    private Airport departureAirport;
-    private Airport arrivalAirport;
+    private String departure;
+    private String arrival;
     @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate departureDate;
     @JsonSerialize(using = LocalTimeSerializer.class)

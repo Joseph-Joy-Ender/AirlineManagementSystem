@@ -30,7 +30,7 @@ public class FlightServiceImpl implements FlightService{
 
     private final FlightRepository flightRepository;
 
-    private final AirportRepository airportRepository;
+    private final AirportService airportService;
 
     private static final ModelMapper mapper = new ModelMapper();
 
@@ -39,16 +39,17 @@ public class FlightServiceImpl implements FlightService{
         if (flightRepository.existsByFlightNumber(flightRequest.getFlightNumber())){
             throw new DuplicateFlightException(GenerateApiResponse.FLIGHT_WITH_THE_SAME_FIGHT_NUMBER_ALREADY_EXISTS);
         }
-//        Airport departureAirport = airportRepository.findAirportByCodeContainsIgnoreCase(flightRequest.getDepartureAirport().getCode());
-//        Airport arrivalAirport = airportRepository.findAirportByCodeContainsIgnoreCase(flightRequest.getArrivalAirport().getCode());
-          Flight flight = mapper.map(flightRequest, Flight.class);
-//        flight.setDepartureAirport(departureAirport);
-//        flight.setArrivalAirport(arrivalAirport);
 
-        flightRepository.save(flight);
-        AddFlightResponse flightResponse = new AddFlightResponse();
-        flightResponse.setMessage("Flight added successfully");
-        return flightResponse;
+          Airport departure = airportService.getAirportByCode(flightRequest.getDeparture());
+          Airport arrival = airportService.getAirportByCode(flightRequest.getArrival());
+
+          Flight flight = mapper.map(flightRequest, Flight.class);
+          flight.setDepartureAirport(departure);
+          flight.setArrivalAirport(arrival);
+          flightRepository.save(flight);
+          AddFlightResponse flightResponse = new AddFlightResponse();
+          flightResponse.setMessage("Flight added successfully");
+          return flightResponse;
     }
 
     @Override
@@ -60,12 +61,12 @@ public class FlightServiceImpl implements FlightService{
                 .toList();
     }
 
-    @Override
-    public List<Flight> searchFlightByDestination(SearchFlightByDestinationRequest flightRequest) {
-        Airport airport;
-        return flightRepository.searchFlightByDepartureAirportAndArrivalAirport(flightRequest.getDepartureAirport(),
-                flightRequest.getArrivalAirport());
-    }
+//    @Override
+//    public List<Flight> searchFlightByDestination(SearchFlightByDestinationRequest flightRequest) {
+//        Airport;
+//        return flightRepository.searchFlightByDepartureAirportAndArrivalAirport(flightRequest.getDepartureAirport(),
+//                flightRequest.getArrivalAirport());
+//    }
 
     @Override
     public List<Flight> searchFlightsByPrice(SearchFlightByPriceRequest priceRequest) {
