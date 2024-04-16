@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 public class SearchFlightByDestinationRequest {
 
-    private Airport departureAirport;
-    private Airport arrivalAirport;
+    private String departureAirport;
+    private String arrivalAirport;
 
 }

@@ -2,10 +2,8 @@ package com.example.airlineproject.services;
 
 import com.example.airlineproject.data.models.Airport;
 import com.example.airlineproject.data.models.Flight;
-import com.example.airlineproject.data.repositories.AirportRepository;
 import com.example.airlineproject.data.repositories.FlightRepository;
 import com.example.airlineproject.dtos.request.AddFlightRequest;
-import com.example.airlineproject.dtos.request.SearchFlightByPriceRequest;
 import com.example.airlineproject.dtos.request.SearchFlightByDestinationRequest;
 import com.example.airlineproject.dtos.response.AddFlightResponse;
 import com.example.airlineproject.dtos.response.FlightResponse;
@@ -17,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import static java.math.BigInteger.ONE;
@@ -41,6 +40,7 @@ public class FlightServiceImpl implements FlightService{
         }
 
           Airport departure = airportService.getAirportByCode(flightRequest.getDeparture());
+        System.out.println(departure);
           Airport arrival = airportService.getAirportByCode(flightRequest.getArrival());
 
           Flight flight = mapper.map(flightRequest, Flight.class);
@@ -61,16 +61,17 @@ public class FlightServiceImpl implements FlightService{
                 .toList();
     }
 
-//    @Override
-//    public List<Flight> searchFlightByDestination(SearchFlightByDestinationRequest flightRequest) {
+    @Override
+    public List<Flight> searchFlightByDestination(SearchFlightByDestinationRequest flightRequest) {
+        return null;
 //        Airport;
 //        return flightRepository.searchFlightByDepartureAirportAndArrivalAirport(flightRequest.getDepartureAirport(),
 //                flightRequest.getArrivalAirport());
-//    }
+    }
 
     @Override
-    public List<Flight> searchFlightsByPrice(SearchFlightByPriceRequest priceRequest) {
-        return flightRepository.searchFlightsByPrice(priceRequest.getPrice());
+    public List<Flight> searchFlightsByPrice(BigDecimal price) {
+        return flightRepository.searchFlightsByPrice(price);
     }
 
 

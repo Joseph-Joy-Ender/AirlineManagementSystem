@@ -21,10 +21,10 @@ public class Flight {
     @Column(unique = true)
     private String flightNumber;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne(cascade = {CascadeType.MERGE})
     private Airport departureAirport;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne(cascade = {CascadeType.MERGE})
     private Airport arrivalAirport;
 
     private LocalDate departureDate;

@@ -27,5 +27,6 @@ public class Passenger {
     private String phoneNumber;
     private String emailAddress;
     private boolean isEnabled;
+    private String role;
 //    private LocalDateTime localDateTime;
 }

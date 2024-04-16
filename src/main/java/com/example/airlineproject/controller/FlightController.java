@@ -2,8 +2,6 @@ package com.example.airlineproject.controller;
 
 import com.example.airlineproject.data.models.Flight;
 import com.example.airlineproject.dtos.request.AddFlightRequest;
-import com.example.airlineproject.dtos.request.SearchFlightByDestinationRequest;
-import com.example.airlineproject.dtos.request.SearchFlightByPriceRequest;
 import com.example.airlineproject.dtos.response.AddFlightResponse;
 import com.example.airlineproject.dtos.response.FlightResponse;
 import com.example.airlineproject.exceptions.DuplicateFlightException;
@@ -14,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Controller
@@ -40,8 +39,8 @@ public class FlightController {
 //    public ResponseEntity<List<Flight>> searchFlightByDestination(@RequestBody SearchFlightByDestinationRequest destinationRequest){
 //        return new ResponseEntity<>(flightService.searchFlightByDestination(destinationRequest), HttpStatus.OK);
 //    }
-    @GetMapping("/searchFlightByPrice")
-    public ResponseEntity<List<Flight>> searchFlightByPrice(@RequestBody SearchFlightByPriceRequest priceRequest){
-        return new ResponseEntity<>(flightService.searchFlightsByPrice(priceRequest), HttpStatus.OK);
+    @GetMapping("/searchFlightByPrice/{price}")
+    public ResponseEntity<List<Flight>> searchFlightByPrice(@PathVariable BigDecimal price){
+        return new ResponseEntity<>(flightService.searchFlightsByPrice(price), HttpStatus.OK);
     }
 }

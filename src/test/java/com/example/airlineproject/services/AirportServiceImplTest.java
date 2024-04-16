@@ -32,7 +32,34 @@ class AirportServiceImplTest {
         addAirportRequest.setName("Murtala Muhammed International Airport");
         Airport airport = airportService.addAirport(addAirportRequest);
         assertThat(airport).isNotNull();
+    }
 
+    @Test
+    public void testThatAirportCanBeAdded(){
+        AddAirportRequest addAirportRequest = new AddAirportRequest();
+        addAirportRequest.setCode("BNI");
+        addAirportRequest.setLocation("Benin Airport");
+        addAirportRequest.setName("Benin city");
+        Airport airport = airportService.addAirport(addAirportRequest);
+        assertThat(airport).isNotNull();
+    }
+    @Test
+    public void testThatAirportCanBeAdded2(){
+        AddAirportRequest addAirportRequest = new AddAirportRequest();
+        addAirportRequest.setCode("PHC");
+        addAirportRequest.setLocation("Port Harcourt International Airport");
+        addAirportRequest.setName("Omagwa, Rivers State");
+        Airport airport = airportService.addAirport(addAirportRequest);
+        assertThat(airport).isNotNull();
+    }
 
+    @Test
+    public void testThatAirportCanBeAdded3(){
+        AddAirportRequest addAirportRequest = new AddAirportRequest();
+        addAirportRequest.setCode("IBA");
+        addAirportRequest.setLocation("Ibadan Airport");
+        addAirportRequest.setName("Ibadan, Oyo State");
+        Airport airport = airportService.addAirport(addAirportRequest);
+        assertThat(airport).isNotNull();
     }
 }

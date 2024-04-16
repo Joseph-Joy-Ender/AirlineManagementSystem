@@ -10,12 +10,14 @@ import com.example.airlineproject.utils.ApiResponse;
 import com.example.airlineproject.utils.GenerateApiResponse;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
 public class PassengerServiceImpl implements PassengerService {
 
+    private final PasswordEncoder passwordEncoder;
     private final PassengerRepository passengerRepository;
 
     private final EmailService emailService;
@@ -53,7 +55,7 @@ public class PassengerServiceImpl implements PassengerService {
             throw new UserException(GenerateApiResponse.CUSTOMER_ALREADY_EXIST);
         }
         Passenger passenger = mapper.map(registerRequest, Passenger.class);
-//        passenger.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
+        passenger.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
         passengerRepository.save(passenger);
         return GenerateApiResponse.create(GenerateApiResponse.REGISTER_SUCCESSFULLY);
 
