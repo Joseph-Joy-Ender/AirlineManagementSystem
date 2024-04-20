@@ -63,10 +63,11 @@ public class FlightServiceImpl implements FlightService{
 
     @Override
     public List<Flight> searchFlightByDestination(SearchFlightByDestinationRequest flightRequest) {
-        return null;
-//        Airport;
-//        return flightRepository.searchFlightByDepartureAirportAndArrivalAirport(flightRequest.getDepartureAirport(),
-//                flightRequest.getArrivalAirport());
+        List<Flight> flight =
+                flightRepository.
+                        searchFlightsByArrivalAirport_CodeAndDepartureAirport_Code
+                                (flightRequest.getArrivalAirport(), flightRequest.getDepartureAirport());
+        return flight;
     }
 
     @Override

@@ -93,22 +93,11 @@ public class FlightServiceTest {
     @Test
     public void testThatFlightCanBeSearchedFor(){
         SearchFlightByDestinationRequest flightRequest = new SearchFlightByDestinationRequest();
-
-//        Airport departureAirport = new Airport();
-//        departureAirport.setCode("ABV");
-//        departureAirport.setName("Nnamdi Azikiwe International Airport");
-//        departureAirport.setLocation("Abuja, Federal Capital Territory\n");
-//
-//        Airport arrivalAirport = new Airport();
-//        arrivalAirport.setCode("IBA");
-//        departureAirport.setName("Ibadan Airport");
-//        departureAirport.setLocation("Ibadan, Oyo State");
-
         flightRequest.setDepartureAirport("ABV");
-        flightRequest.setArrivalAirport("IBA");
+        flightRequest.setArrivalAirport("LOS");
         List<Flight> searchFlights = flightService.searchFlightByDestination(flightRequest);
         log.info("Searched flight :: {}", searchFlights);
-        assertThat(searchFlights).hasSize(2);
+        assertThat(searchFlights).hasSize(1);
     }
 
     @Test
@@ -118,12 +107,12 @@ public class FlightServiceTest {
         assertThat(searchFlightByPrice).hasSize(2);
     }
 
-//    @Test
-//    public void testThatFlightCanBeCancelled(){
-//        //TODO
-//        //FIRST WE NEED TO FIND THE FLIGHT BY ID OR FLIGHT NUMBER
-//        //SECOND CHECK IF THE FLIGHT EXIST
-//
-//    }
+    @Test
+    public void testThatFlightCanBeCancelled(){
+        //TODO
+        //FIRST WE NEED TO FIND THE FLIGHT BY ID OR FLIGHT NUMBER
+        //SECOND CHECK IF THE FLIGHT EXIST
+
+    }
 
 }
