@@ -24,7 +24,7 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 @SpringBootTest
 @Slf4j
-public class FlightServiceTest {
+public class  FlightServiceTest {
 
     @Autowired
     private FlightService flightService;
