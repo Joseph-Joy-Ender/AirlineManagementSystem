@@ -6,5 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface AirportRepository extends JpaRepository<Airport, Long> {
 //    Airport findAirportByCodeContainsIgnoreCase(String code);
     Airport getAirportByCode(String code);
+    Airport getAirportByName(String airportName);
+    Airport searchAirportByCode(String code);
 
 }

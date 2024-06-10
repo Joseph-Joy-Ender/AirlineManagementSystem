@@ -6,7 +6,7 @@ import com.example.airlineproject.exceptions.UserException;
 import com.example.airlineproject.utils.ApiResponse;
 
 public interface PassengerService {
-    Passenger savePassenger(Passenger passenger);
-    Boolean verifyToken(String token);
+//    Passenger savePassenger(Passenger passenger);
+//    Boolean verifyToken(String token);
     ApiResponse register(UserRegisterRequest registerRequest) throws UserException;
 }

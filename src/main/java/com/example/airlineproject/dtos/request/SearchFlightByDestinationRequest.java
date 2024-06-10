@@ -1,6 +1,5 @@
 package com.example.airlineproject.dtos.request;
 
-import com.example.airlineproject.data.models.Airport;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -8,7 +8,6 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
-import org.thymeleaf.context.Context;
 
 import java.io.File;
 
@@ -73,7 +72,7 @@ public class EmailServiceImpl implements EmailService{
     @Override
     public void sendHtmlEmail(String name, String to, String token) {
         try {
-            Context context = new Context();
+//            Context context = new Context();
 //            context.setVariable("Joy");
             MimeMessage mailMessage = getMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(mailMessage, true, "UTF-8");

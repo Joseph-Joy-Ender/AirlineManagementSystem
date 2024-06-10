@@ -6,5 +6,8 @@ import com.example.airlineproject.dtos.request.AddAirportRequest;
 public interface AirportService {
     Airport addAirport(AddAirportRequest addAirportRequest);
     Airport getAirportByCode(String code);
+    Airport getAirportByName(String airportName);
     Airport save(Airport airport);
+
+    Airport searchAirportByCode(String airportCode);
 }

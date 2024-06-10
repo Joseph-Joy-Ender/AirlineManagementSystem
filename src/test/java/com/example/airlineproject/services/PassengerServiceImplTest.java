@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
-public class PassengerServiceTest {
+public class PassengerServiceImplTest {
 
     @Autowired
     private PassengerService passengerService;

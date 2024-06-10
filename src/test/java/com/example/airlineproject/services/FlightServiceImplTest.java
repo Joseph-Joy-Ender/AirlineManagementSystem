@@ -24,7 +24,7 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 @SpringBootTest
 @Slf4j
-public class  FlightServiceTest {
+public class FlightServiceImplTest {
 
     @Autowired
     private FlightService flightService;
@@ -37,8 +37,8 @@ public class  FlightServiceTest {
         flightRequest.setFlightNumber("ABC123EJ");
         flightRequest.setDepartureDate(LocalDate.of(2023, 10, 6));
         flightRequest.setDepartureTime(LocalTime.of(12, 45, 40));
-        flightRequest.setDeparture("ABV");
-        flightRequest.setArrival("LOS");
+        flightRequest.setDepartureName("Nnamdi Azikiwe Airport");
+        flightRequest.setArrivalName("Murtala Muhammed International Airport");
         flightRequest.setAirline(ArikAir);
         flightRequest.setFlightType(FlightType.ECONOMY);
         flightRequest.setPrice(BigDecimal.valueOf(100000));
@@ -55,8 +55,8 @@ public class  FlightServiceTest {
         flightRequest.setFlightNumber("ABZ223ET");
         flightRequest.setDepartureDate(LocalDate.of(2023, 11, 7));
         flightRequest.setDepartureTime(LocalTime.of(3, 50, 45));
-        flightRequest.setDeparture("ABV");
-        flightRequest.setArrival("BNI");
+        flightRequest.setDepartureName("Nnamdi Azikiwe Airport");
+        flightRequest.setArrivalName("Benin Airport");
         flightRequest.setAirline(ArikAir);
         flightRequest.setFlightType(FlightType.ECONOMY);
         flightRequest.setPrice(BigDecimal.valueOf(100000));
@@ -70,8 +70,8 @@ public class  FlightServiceTest {
         AddFlightRequest flightRequest = new AddFlightRequest();
 
         flightRequest.setFlightNumber("ABC123ER");
-        flightRequest.setDeparture("PHC");
-        flightRequest.setArrival("IBA");
+        flightRequest.setDepartureName("Port Harcourt International Airport");
+        flightRequest.setArrivalName("Ibadan Airport");
         flightRequest.setDepartureDate(LocalDate.of(2024, 1, 5));
         flightRequest.setDepartureTime(LocalTime.of(2, 40, 30));
         flightRequest.setAirline(DANA_AIR);
@@ -101,6 +101,16 @@ public class  FlightServiceTest {
     }
 
     @Test
+    public void testThatFlightCanBeSearchedForByAirport(){
+        SearchFlightByDestinationRequest flightRequest = new SearchFlightByDestinationRequest();
+        flightRequest.setDepartureAirport("ABV");
+        flightRequest.setArrivalAirport("IBA");
+        List<Flight> searchFlights = flightService.searchFlightByDestination(flightRequest);
+//        log.info("Searched flight :: {}", searchFlights);
+        assertThat(searchFlights).isNotNull();
+    }
+
+    @Test
     public void testThatFlightsCanBeSearchedByPrice(){
         BigDecimal price = BigDecimal.valueOf(100000.00);
         List<Flight> searchFlightByPrice = flightService.searchFlightsByPrice(price);
@@ -108,7 +118,7 @@ public class  FlightServiceTest {
     }
 
     @Test
-    public void testThatFlightCanBeCancelled(){
+    public void testThatFlightCanBeBooked (){
         //TODO
         //FIRST WE NEED TO FIND THE FLIGHT BY ID OR FLIGHT NUMBER
         //SECOND CHECK IF THE FLIGHT EXIST

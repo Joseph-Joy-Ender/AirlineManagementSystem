@@ -32,31 +32,31 @@ public class PassengerController {
         return new ResponseEntity<>(passengerService.register(registerRequest), HttpStatus.CREATED);
     }
 
-   @PostMapping
-    public ResponseEntity<HttpResponse> createUser(@RequestBody Passenger passenger){
-       passengerService.savePassenger(passenger);
-       return ResponseEntity.created(URI.create("")).body(
-               HttpResponse.builder()
-                       .timeStamp(LocalDateTime.now().toString())
-                       .data(Map.of("Passenger", passenger))
-                       .message("Passenger created")
-                       .status(HttpStatus.CREATED)
-                       .statusCode(HttpStatus.CREATED.value())
-                       .build()
-       );
-    }
-    @GetMapping
-    public ResponseEntity<HttpResponse> confirmPassengerAccount(@RequestParam("token") String token){
-      Boolean isSuccessful = passengerService.verifyToken(token);
-       return ResponseEntity.ok().body(
-               HttpResponse.builder()
-                       .timeStamp(LocalDateTime.now().toString())
-                       .data(Map.of("success", isSuccessful))
-                       .message("Account Verified")
-                       .status(HttpStatus.OK)
-                       .statusCode(HttpStatus.OK.value())
-                       .build()
-       );
-    }
+//   @PostMapping
+//    public ResponseEntity<HttpResponse> createUser(@RequestBody Passenger passenger){
+//       passengerService.savePassenger(passenger);
+//       return ResponseEntity.created(URI.create("")).body(
+//               HttpResponse.builder()
+//                       .timeStamp(LocalDateTime.now().toString())
+//                       .data(Map.of("Passenger", passenger))
+//                       .message("Passenger created")
+//                       .status(HttpStatus.CREATED)
+//                       .statusCode(HttpStatus.CREATED.value())
+//                       .build()
+//       );
+//    }
+//    @GetMapping
+//    public ResponseEntity<HttpResponse> confirmPassengerAccount(@RequestParam("token") String token){
+//      Boolean isSuccessful = passengerService.verifyToken(token);
+//       return ResponseEntity.ok().body(
+//               HttpResponse.builder()
+//                       .timeStamp(LocalDateTime.now().toString())
+//                       .data(Map.of("success", isSuccessful))
+//                       .message("Account Verified")
+//                       .status(HttpStatus.OK)
+//                       .statusCode(HttpStatus.OK.value())
+//                       .build()
+//       );
+//    }
 
 }

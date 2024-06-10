@@ -26,7 +26,17 @@ public class AirportServiceImpl implements AirportService{
     }
 
     @Override
+    public Airport getAirportByName(String airportName) {
+        return airportRepository.getAirportByName(airportName);
+    }
+
+    @Override
     public Airport save(Airport airport) {
         return airportRepository.save(airport);
+    }
+
+    @Override
+    public Airport searchAirportByCode(String airportCode) {
+        return airportRepository.searchAirportByCode(airportCode);
     }
 }

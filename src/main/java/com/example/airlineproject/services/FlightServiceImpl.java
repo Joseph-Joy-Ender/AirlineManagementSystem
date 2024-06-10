@@ -39,9 +39,8 @@ public class FlightServiceImpl implements FlightService{
             throw new DuplicateFlightException(GenerateApiResponse.FLIGHT_WITH_THE_SAME_FIGHT_NUMBER_ALREADY_EXISTS);
         }
 
-          Airport departure = airportService.getAirportByCode(flightRequest.getDeparture());
-        System.out.println(departure);
-          Airport arrival = airportService.getAirportByCode(flightRequest.getArrival());
+          Airport departure = airportService.getAirportByName(flightRequest.getDepartureName());
+          Airport arrival = airportService.getAirportByName(flightRequest.getArrivalName());
 
           Flight flight = mapper.map(flightRequest, Flight.class);
           flight.setDepartureAirport(departure);
@@ -63,10 +62,9 @@ public class FlightServiceImpl implements FlightService{
 
     @Override
     public List<Flight> searchFlightByDestination(SearchFlightByDestinationRequest flightRequest) {
-        List<Flight> flight = flightRepository.
-                        searchFlightsByArrivalAirport_CodeAndDepartureAirport_Code
-                                (flightRequest.getArrivalAirport(), flightRequest.getDepartureAirport());
-        return flight;
+        Airport arrivalAirport = airportService.searchAirportByCode(flightRequest.getArrivalAirport());
+        Airport departureAirport = airportService.searchAirportByCode(flightRequest.getDepartureAirport());
+        return flightRepository.searchFlightsByArrivalAirportAndDepartureAirport(arrivalAirport, departureAirport);
     }
 
     @Override
